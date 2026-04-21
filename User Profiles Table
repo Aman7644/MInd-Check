@@ -1,0 +1,8 @@
+CREATE TABLE user_profiles (
+    id UUID PRIMARY KEY,
+    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    age INT,
+    gender VARCHAR(20),
+    encrypted_notes TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
