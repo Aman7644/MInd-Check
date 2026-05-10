@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mental Health Dashboard</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#f4f7fb;
+    }
+
+    header{
+      background:#4a90e2;
+      color:white;
+      padding:15px 30px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    header button{
+      padding:8px 15px;
+      border:none;
+      border-radius:5px;
+      margin-left:10px;
+      cursor:pointer;
+      background:white;
+      color:#4a90e2;
+      font-weight:bold;
+    }
+
+    .container{
+      width:90%;
+      max-width:900px;
+      margin:30px auto;
+    }
+
+    .container h3{
+      margin-bottom:20px;
+      color:#333;
+    }
+
+    .card{
+      background:white;
+      padding:20px;
+      border-radius:10px;
+      margin-bottom:20px;
+      box-shadow:0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .card h4{
+      margin-bottom:15px;
+      color:#444;
+    }
+
+    input,
+    textarea{
+      width:100%;
+      padding:10px;
+      margin-bottom:15px;
+      border:1px solid #ccc;
+      border-radius:5px;
+      outline:none;
+    }
+
+    textarea{
+      height:100px;
+      resize:none;
+    }
+
+    button{
+      padding:10px 18px;
+      background:#4a90e2;
+      color:white;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;
+    }
+
+    button:hover{
+      background:#357abd;
+    }
+
+    .question{
+      margin-bottom:20px;
+    }
+
+    .question p{
+      margin-bottom:8px;
+      color:#333;
+      font-weight:bold;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <h2>Mental Health Dashboard</h2>
+
+  <div>
+
+    <button>
+      Find Therapist
+    </button>
+
+    <button onclick="logout()">
+      Logout
+    </button>
+
+  </div>
+
+</header>
+
+<div class="container">
+
+  <h3>Welcome 👋</h3>
+
+  <!-- Daily Check-in -->
+  <div class="card">
+
+    <h4>Daily Check-in</h4>
+
+    <input 
+      type="number" 
+      id="mood" 
+      placeholder="Mood (1-10)"
+      min="1"
+      max="10"
+    />
+
+    <textarea 
+      id="note"
+      placeholder="Write how you feel..."
+    ></textarea>
+
+    <button onclick="submitCheckin()">
+      Submit
+    </button>
+
+  </div>
+
+  <!-- Assessment -->
+  <div class="card">
+
+    <h4>Initial Assessment</h4>
+
+    <p style="margin-bottom:20px; color:gray;">
+      Rate each question from 1 to 10
+    </p>
+
+    <form id="assessmentForm">
+
+      <div class="question">
+        <p>1. How stressed are you today?</p>
+        <input type="number" min="1" max="10" required>
+      </div>
+
+      <div class="question">
+        <p>2. How anxious do you feel?</p>
+        <input type="number" min="1" max="10" required>
+      </div>
+
+      <div class="question">
+        <p>3. How well did you sleep last night?</p>
+        <input type="number" min="1" max="10" required>
+      </div>
+
+      <div class="question">
+        <p>4. How energetic do you feel?</p>
+        <input type="number" min="1" max="10" required>
+      </div>
+
+      <div class="question">
+        <p>5. How focused are you today?</p>
+        <input type="number" min="1" max="10" required>
+      </div>
+
+      <div class="question">
+        <p>6. How lonely do you feel?</p>
+        <input type="number" min="1" max="10" required>
+      </div>
+
+      <div class="question">
+        <p>7. How happy are you today?</p>
+        <input type="number" min="1" max="10" required>
+      </div>
+
+      <div class="question">
+        <p>8. How motivated are you?</p>
+        <input type="number" min="1" max="10" required>
+      </div>
+
+      <div class="question">
+        <p>9. How often do you overthink?</p>
+        <input type="number" min="1" max="10" required>
+      </div>
+
+      <div class="question">
+        <p>10. How calm do you feel?</p>
+        <input type="number" min="1" max="10" required>
+      </div>
+
+      <div class="question">
+        <p>11. How confident do you feel?</p>
+        <input type="number" min="1" max="10" required>
+      </div>
+
+      <div class="question">
+        <p>12. How emotionally balanced are you?</p>
+        <input type="number" min="1" max="10" required>
+      </div>
+
+      <button type="submit">
+        Submit Assessment
+      </button>
+
+    </form>
+
+    <!-- Report Section -->
+    <div id="result" style="margin-top:25px;"></div>
+
+  </div>
+
+</div>
+
+<script>
+
+  // Daily Check-in
+  function submitCheckin(){
+
+    const mood = document.getElementById("mood").value;
+    const note = document.getElementById("note").value;
+
+    if(mood && note){
+
+      alert("Check-in Submitted Successfully");
+
+    } else {
+
+      alert("Please fill all fields");
+    }
+  }
+
+  // Logout
+  function logout(){
+
+    alert("Logged Out");
+
+    window.location.href = "login.html";
+  }
+
+  // Assessment Form
+  const form = document.getElementById("assessmentForm");
+
+  form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const answers = document.querySelectorAll("#assessmentForm input");
+
+    let total = 0;
+
+    answers.forEach((input) => {
+
+      total += Number(input.value);
+    });
+
+    const average = total / answers.length;
+
+    let report = "";
+    let suggestion = "";
+
+    // Report Logic
+    if(average >= 8){
+
+      report = "Excellent Mental Health";
+
+      suggestion =
+        "You are emotionally strong and balanced. Continue self-care, exercise, healthy sleep, and positive habits.";
+
+    }
+
+    else if(average >= 5){
+
+      report = "Moderate Mental Health";
+
+      suggestion =
+        "You may be experiencing some stress. Try meditation, relaxation, proper sleep, and talking with supportive people.";
+
+    }
+
+    else{
+
+      report = "Mental Health Needs Attention";
+
+      suggestion =
+        "You may be struggling emotionally. Consider taking rest, reducing stress, and speaking with a mental health professional.";
+
+    }
+
+    // Show Result
+    document.getElementById("result").innerHTML = `
+
+      <div style="
+        background:#f9f9f9;
+        padding:20px;
+        border-radius:10px;
+        border:1px solid #ddd;
+      ">
+
+        <h3 style="
+          margin-bottom:15px;
+          color:#4a90e2;
+        ">
+          Your Mental Health Report
+        </h3>
+
+        <p>
+          <strong>Total Score:</strong> ${total}
+        </p>
+
+        <p>
+          <strong>Average Score:</strong> ${average.toFixed(2)}
+        </p>
+
+        <p>
+          <strong>Status:</strong> ${report}
+        </p>
+
+        <br>
+
+        <p>
+          <strong>Suggestion:</strong>
+        </p>
+
+        <p>
+          ${suggestion}
+        </p>
+
+      </div>
+    `;
+  });
+
+</script>
+
+</body>
+</html>
