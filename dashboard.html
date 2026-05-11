@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mental Health Dashboard</title>
 
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <style>
 
     *{
@@ -40,7 +43,7 @@
 
     .container{
       width:90%;
-      max-width:900px;
+      max-width:1000px;
       margin:30px auto;
     }
 
@@ -98,6 +101,20 @@
       margin-bottom:8px;
       color:#333;
       font-weight:bold;
+    }
+
+    #result{
+      margin-top:25px;
+    }
+
+    #chatBox{
+      height:300px;
+      overflow-y:auto;
+      border:1px solid #ccc;
+      padding:10px;
+      border-radius:10px;
+      margin-bottom:15px;
+      background:#fafafa;
     }
 
   </style>
@@ -229,13 +246,175 @@
     </form>
 
     <!-- Report Section -->
-    <div id="result" style="margin-top:25px;"></div>
+    <div id="result"></div>
+
+  </div>
+
+  <!-- Mood Chart -->
+  <div class="card">
+
+    <h4>Mood Analysis Chart</h4>
+
+    <canvas id="moodChart"></canvas>
+
+  </div>
+
+  <!-- AI Chat Support -->
+  <div class="card">
+
+    <h4>AI Mental Health Assistant</h4>
+
+    <div id="chatBox"></div>
+
+    <input 
+      type="text"
+      id="userMessage"
+      placeholder="Ask something..."
+    />
+
+    <button onclick="sendMessage()">
+      Send
+    </button>
+
+  </div>
+
+  <!-- Therapist Support -->
+  <div class="card">
+
+    <h4>Connect With Therapist</h4>
+
+    <div style="
+      border:1px solid #ddd;
+      padding:15px;
+      border-radius:10px;
+      margin-bottom:15px;
+    ">
+
+      <h3>Dr. Priya Sharma</h3>
+
+      <p>
+        <strong>Specialization:</strong>
+        Anxiety & Stress Management
+      </p>
+
+      <p>
+        <strong>Experience:</strong>
+        8 Years
+      </p>
+
+      <p>
+        <strong>Availability:</strong>
+        Mon - Sat
+      </p>
+
+      <button onclick="bookAppointment()">
+        Book Appointment
+      </button>
+
+    </div>
+
+    <textarea
+      id="therapistMessage"
+      placeholder="Write message to therapist..."
+    ></textarea>
+
+    <button onclick="sendToTherapist()">
+      Send Message
+    </button>
+
+    <div id="therapistReply" style="margin-top:20px;"></div>
+
+  </div>
+  <!-- Music Therapy -->
+<div class="card">
+
+  <h4>Music Therapy</h4>
+
+  <p style="margin-bottom:15px;">
+    Relax your mind with calming music
+  </p>
+
+  <audio controls style="width:100%;">
+
+    <source 
+      src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+      type="audio/mpeg"
+    >
+
+    Your browser does not support audio.
+
+  </audio>
+  
+
+  </div>
+  <!-- Funny Jokes Section -->
+<div class="card">
+
+  <h4>Stress Relief Jokes 😂</h4>
+
+  <p id="jokeText" style="
+    margin:20px 0;
+    font-size:18px;
+    color:#444;
+  ">
+    Click the button to see a funny joke 😄
+  </p>
+
+  <button onclick="generateJoke()">
+    Show Joke
+  </button>
+
+</div>
+  <!-- Emergency Help -->
+<div class="card">
+
+  <h4 style="color:red;">
+    Emergency Mental Health Support
+  </h4>
+
+  <p style="margin-bottom:15px;">
+    If you are in emotional crisis or need urgent help,
+    contact emergency support immediately.
+  </p>
+
+  <div style="
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+  ">
+
+    <button onclick="callHelpline()">
+      Call Helpline
+    </button>
+
+    <button onclick="sendEmergencyMail()">
+      Emergency Email
+    </button>
 
   </div>
 
 </div>
 
+</div>
+
 <script>
+
+  let moodChart;
+
+  let moodLabels = [
+    "Stress",
+    "Anxiety",
+    "Sleep",
+    "Energy",
+    "Focus",
+    "Loneliness",
+    "Happiness",
+    "Motivation",
+    "Overthinking",
+    "Calmness",
+    "Confidence",
+    "Balance"
+  ];
 
   // Daily Check-in
   function submitCheckin(){
@@ -282,13 +461,12 @@
     let report = "";
     let suggestion = "";
 
-    // Report Logic
     if(average >= 8){
 
       report = "Excellent Mental Health";
 
       suggestion =
-        "You are emotionally strong and balanced. Continue self-care, exercise, healthy sleep, and positive habits.";
+        "You are emotionally strong and balanced.";
 
     }
 
@@ -297,7 +475,7 @@
       report = "Moderate Mental Health";
 
       suggestion =
-        "You may be experiencing some stress. Try meditation, relaxation, proper sleep, and talking with supportive people.";
+        "You may be experiencing some stress.";
 
     }
 
@@ -306,11 +484,9 @@
       report = "Mental Health Needs Attention";
 
       suggestion =
-        "You may be struggling emotionally. Consider taking rest, reducing stress, and speaking with a mental health professional.";
-
+        "Please consider speaking with a therapist.";
     }
 
-    // Show Result
     document.getElementById("result").innerHTML = `
 
       <div style="
@@ -327,31 +503,251 @@
           Your Mental Health Report
         </h3>
 
-        <p>
-          <strong>Total Score:</strong> ${total}
-        </p>
+        <p><strong>Total Score:</strong> ${total}</p>
 
-        <p>
-          <strong>Average Score:</strong> ${average.toFixed(2)}
-        </p>
+        <p><strong>Average Score:</strong> ${average.toFixed(2)}</p>
 
-        <p>
-          <strong>Status:</strong> ${report}
-        </p>
+        <p><strong>Status:</strong> ${report}</p>
 
         <br>
 
-        <p>
-          <strong>Suggestion:</strong>
-        </p>
+        <p><strong>Suggestion:</strong></p>
+
+        <p>${suggestion}</p>
+
+      </div>
+    `;
+
+    const moodValues = [];
+
+    answers.forEach((input) => {
+
+      moodValues.push(Number(input.value));
+
+    });
+
+    if(moodChart){
+
+      moodChart.destroy();
+    }
+
+    const ctx = document.getElementById("moodChart");
+
+    moodChart = new Chart(ctx, {
+
+      type: "bar",
+
+      data: {
+
+        labels: moodLabels,
+
+        datasets: [{
+
+          label: "Mental Health Score",
+
+          data: moodValues,
+
+          backgroundColor: [
+            "#4a90e2",
+            "#50c878",
+            "#ffb347",
+            "#ff6961",
+            "#9370db",
+            "#20b2aa",
+            "#ffa07a",
+            "#6495ed",
+            "#ffcc00",
+            "#00bfff",
+            "#90ee90",
+            "#ff7f50"
+          ],
+
+          borderRadius: 5
+        }]
+      },
+
+      options: {
+
+        responsive: true,
+
+        scales: {
+
+          y: {
+            beginAtZero: true,
+            max: 10
+          }
+        }
+      }
+    });
+
+  });
+
+  // AI Chat
+  function sendMessage(){
+
+    const input = document.getElementById("userMessage");
+
+    const message = input.value.trim();
+
+    if(message === "") return;
+
+    const chatBox = document.getElementById("chatBox");
+
+    chatBox.innerHTML += `
+      <div style="text-align:right; margin-bottom:10px;">
+        <span style="
+          background:#4a90e2;
+          color:white;
+          padding:10px;
+          border-radius:10px;
+          display:inline-block;
+        ">
+          ${message}
+        </span>
+      </div>
+    `;
+
+    let reply = "";
+
+    const lowerMessage = message.toLowerCase();
+
+    if(lowerMessage.includes("stress")){
+
+      reply = "Try meditation and deep breathing.";
+
+    }
+
+    else if(lowerMessage.includes("sad")){
+
+      reply = "Talk with supportive people and rest properly.";
+
+    }
+
+    else if(lowerMessage.includes("sleep")){
+
+      reply = "Maintain a proper sleep schedule.";
+
+    }
+
+    else{
+
+      reply = "I am here to support you.";
+    }
+
+    setTimeout(() => {
+
+      chatBox.innerHTML += `
+        <div style="text-align:left; margin-bottom:10px;">
+          <span style="
+            background:#e5e5e5;
+            padding:10px;
+            border-radius:10px;
+            display:inline-block;
+          ">
+            ${reply}
+          </span>
+        </div>
+      `;
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+    }, 500);
+
+    input.value = "";
+  }
+
+  // Therapist Functions
+  function bookAppointment(){
+
+    alert("Appointment Request Sent Successfully");
+  }
+
+  function sendToTherapist(){
+
+    const message =
+      document.getElementById("therapistMessage").value;
+
+    if(message === ""){
+
+      alert("Please write a message");
+
+      return;
+    }
+
+    document.getElementById("therapistReply").innerHTML = `
+
+      <div style="
+        background:#f1f1f1;
+        padding:15px;
+        border-radius:10px;
+        border:1px solid #ccc;
+      ">
+
+        <p><strong>Your Message:</strong></p>
+
+        <p>${message}</p>
+
+        <br>
+
+        <p><strong>Therapist Reply:</strong></p>
 
         <p>
-          ${suggestion}
+          Thank you for reaching out.
+          We will discuss this during the appointment.
         </p>
 
       </div>
     `;
-  });
+
+    document.getElementById("therapistMessage").value = "";
+  }
+  // Funny Jokes
+function generateJoke(){
+
+  const jokes = [
+
+    "Why don’t programmers like nature? Because it has too many bugs 😂",
+
+    "Teacher: Why are you late? Student: Because of the sign board, sir. Teacher: What sign board? Student: 'School Ahead, Go Slow' 😆",
+
+    "Mummy: Padhai kar lo. Me: Kar toh raha hu. Mummy: Phone me? Me: Knowledge bhi toh digital ho gaya hai 😂",
+
+    "Why was the computer cold? Because it forgot to close Windows 😂",
+
+    "Papa: Result kaisa aaya? Beta: Sirf marks kam hai, confidence full hai 😎😂",
+
+    "Girlfriend: Tum mujhe kitna pyar karte ho? Boyfriend: Jitna phone ko charging se 😆",
+
+    "Teacher: Tell me a sentence with 'I'. Student: I is... Teacher: No, say 'I am'. Student: Okay... I am the ninth letter of alphabet 😂",
+
+    "Life before exam: Kal se pakka padhai. Life during exam: Bhagwan bas pass kara do 😭😂",
+
+    "Why did the student bring a ladder to school? Because he wanted higher education 😆",
+
+    "Mummy: Din bhar mobile chalata rehta hai. Me: Mummy research kar raha hu. Mummy: Kaisi research? Me: Meme science 😂"
+
+  ];
+
+  const randomIndex =
+    Math.floor(Math.random() * jokes.length);
+
+  document.getElementById("jokeText").innerText =
+    jokes[randomIndex];
+}
+  // Emergency Call
+function callHelpline(){
+
+  alert(
+    "National Mental Health Helpline: 1800-599-0019"
+  );
+}
+
+// Emergency Email
+function sendEmergencyMail(){
+
+  window.location.href =
+    "mailto:support@mentalhealth.com";
+}
 
 </script>
 
