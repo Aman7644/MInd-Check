@@ -6,607 +6,525 @@
   <title>MindWell Resources</title>
 
   <style>
-
-    :root{
-
-      --bg-color:#f8f7f2;
-      --card-bg:#fffefb;
-      --text-main:#2d3436;
-      --accent-green:#96b3a2;
-      --border-color:#e0e0e0;
-      --shadow:0 4px 12px rgba(0,0,0,0.05);
+    :root {
+      --bg-color: #f8f7f2;
+      --card-bg: #ffffff;
+      --text-main: #2d3436;
+      --text-muted: #636e72;
+      --accent-green: #74a085;
+      --accent-green-hover: #5d876d;
+      --accent-red: #ff7675;
+      --accent-red-hover: #d63031;
+      --border-color: #eaeaea;
+      --shadow-sm: 0 4px 12px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.08);
+      --radius: 16px;
     }
 
-    *{
-
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:'Segoe UI',Tahoma,sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
 
-    body{
-
-      background:var(--bg-color);
-      color:var(--text-main);
+    body {
+      background: linear-gradient(135deg, var(--bg-color) 0%, #eef3f0 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
     }
 
-    header{
-
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:15px 40px;
-      background:var(--card-bg);
-      border-bottom:1px solid var(--border-color);
-      box-shadow:var(--shadow);
+    /* --- Navigation --- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    .logo{
-
-      font-size:24px;
-      font-weight:bold;
-      color:var(--accent-green);
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-green);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    nav a{
-
-      margin:0 12px;
-      text-decoration:none;
-      color:var(--text-main);
-      font-weight:500;
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 600;
+      transition: color 0.3s ease;
     }
 
-    nav a.active{
-
-      background:var(--accent-green);
-      color:white;
-      padding:8px 15px;
-      border-radius:8px;
+    nav a:hover {
+      color: var(--accent-green);
     }
 
-    .container{
-
-      max-width:1200px;
-      margin:40px auto;
-      padding:20px;
+    nav a.active {
+      background: var(--accent-green);
+      color: white;
+      padding: 8px 18px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(116, 160, 133, 0.3);
     }
 
-    .hero{
-
-      text-align:center;
-      margin-bottom:40px;
+    /* --- Main Container --- */
+    .container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px;
     }
 
-    .hero img{
-
-      width:120px;
-      margin-bottom:20px;
+    /* --- Hero Section --- */
+    .hero {
+      text-align: center;
+      margin-bottom: 50px;
+      padding: 40px 20px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
     }
 
-    .hero h1{
-
-      font-size:40px;
-      margin-bottom:10px;
+    .hero img {
+      width: 100px;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+    
+    .hero img:hover {
+      transform: scale(1.05);
     }
 
-    .hero p{
-
-      color:#666;
-      font-size:18px;
+    .hero h1 {
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 15px;
+      color: #2c3e50;
     }
 
-    .grid{
-
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-      gap:25px;
+    .hero p {
+      color: var(--text-muted);
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    .card{
-
-      background:var(--card-bg);
-      padding:25px;
-      border-radius:15px;
-      box-shadow:var(--shadow);
-      border:1px solid var(--border-color);
+    /* --- Interactive Featured Section (Music Therapy) --- */
+    .featured-tool {
+      background: linear-gradient(135deg, #ffffff 0%, #f0f7f3 100%);
+      padding: 35px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      margin-bottom: 40px;
+      text-align: center;
     }
 
-    .card h3{
-
-      margin-bottom:15px;
-      color:var(--accent-green);
+    .featured-tool h3 {
+      font-size: 26px;
+      color: var(--accent-green);
+      margin-bottom: 10px;
     }
 
-    .card p{
-
-      margin-bottom:15px;
-      line-height:1.6;
+    .featured-tool select {
+      width: 100%;
+      max-width: 400px;
+      padding: 14px 20px;
+      margin-top: 20px;
+      border-radius: 12px;
+      border: 2px solid var(--border-color);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-main);
+      background: white;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s ease;
     }
 
-    .card button{
-
-      background:var(--accent-green);
-      color:white;
-      border:none;
-      padding:10px 18px;
-      border-radius:8px;
-      cursor:pointer;
+    .featured-tool select:focus {
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 4px rgba(116, 160, 133, 0.15);
     }
 
-    .card button:hover{
-
-      opacity:0.9;
+    #songList {
+      margin-top: 25px;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      display: none; /* Hidden until a mood is selected */
+      box-shadow: var(--shadow-sm);
+      text-align: left;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .quote{
-
-      background:#eef7f0;
-      padding:20px;
-      border-left:5px solid var(--accent-green);
-      border-radius:10px;
-      margin-top:15px;
-      font-style:italic;
+    #songList h4 {
+      color: var(--accent-green);
+      margin-bottom: 15px;
+      font-size: 18px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
     }
 
-    .checklist{
-
-      list-style:none;
-      margin-top:15px;
+    .song-item {
+      padding: 10px 15px;
+      background: var(--bg-color);
+      margin-bottom: 10px;
+      border-radius: 8px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .checklist li{
-
-      margin-bottom:10px;
+    /* --- Grid Layout --- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
     }
 
-    iframe{
-
-      width:100%;
-      border-radius:10px;
-      margin-top:10px;
+    /* --- Cards --- */
+    .card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
 
-    footer{
-
-      text-align:center;
-      padding:30px;
-      opacity:0.7;
-      margin-top:40px;
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent-green);
     }
 
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: var(--accent-green);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    /* --- Buttons --- */
+    button {
+      background: var(--accent-green);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background: var(--accent-green-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-emergency {
+      background: var(--accent-red);
+    }
+
+    .btn-emergency:hover {
+      background: var(--accent-red-hover);
+    }
+
+    /* --- Lists & Elements --- */
+    .quote {
+      background: #f0f7f3;
+      padding: 25px;
+      border-left: 6px solid var(--accent-green);
+      border-radius: 0 12px 12px 0;
+      font-style: italic;
+      font-size: 17px;
+      color: #34495e;
+      font-weight: 500;
+    }
+
+    .checklist {
+      list-style: none;
+    }
+
+    .checklist li {
+      margin-bottom: 12px;
+      padding: 10px 15px;
+      background: var(--bg-color);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent-green);
+      cursor: pointer;
+    }
+
+    iframe {
+      width: 100%;
+      border-radius: 12px;
+      border: none;
+      box-shadow: var(--shadow-sm);
+    }
+
+    audio {
+      width: 100%;
+      margin-top: auto;
+      border-radius: 30px;
+    }
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 50px;
+      background: white;
+      border-top: 1px solid var(--border-color);
+    }
   </style>
 </head>
 
 <body>
 
 <header>
-
-  <div class="logo">
-    🌿 MindWell
-  </div>
-
+  <div class="logo">🌿 MindWell</div>
   <nav>
-
-    <a href="dashboard.html">
-      Dashboard
-    </a>
-
-    <a href="journal.html">
-      Journal
-    </a>
-
-    <a href="resources.html"
-      class="active">
-
-      Resources
-
-    </a>
-
-    <a href="#">
-      Profile
-    </a>
-
+    <a href="dashboard.html">Dashboard</a>
+    <a href="journal.html">Journal</a>
+    <a href="resources.html" class="active">Resources</a>
+    <a href="#">Profile</a>
   </nav>
-
 </header>
 
 <div class="container">
 
-  <!-- Hero -->
-
+  <!-- Hero Section -->
   <div class="hero">
-
-    <img
-      src="https://cdn-icons-png.flaticon.com/512/3771/3771417.png"
-    >
-
-    <h1>
-      Mental Wellness Resources 🌈
-    </h1>
-
-    <p>
-      Explore tools and activities
-      to improve your mental health.
-    </p>
-
+    <img src="https://cdn-icons-png.flaticon.com/512/3771/3771417.png" alt="Mental Wellness Brain Icon">
+    <h1>Mental Wellness Resources 🌈</h1>
+    <p>Explore curated tools, guided activities, and professional advice to nurture your mind and improve your emotional well-being.</p>
   </div>
 
+  <!-- Featured Mood Based Music Therapy -->
+  <div class="featured-tool">
+    <h3>🎵 Mood Based Music Therapy</h3>
+    <p style="color: var(--text-muted); font-size: 16px;">Select your current emotion to receive a tailored playlist designed to comfort and uplift your spirit 💙</p>
+    
+    <select id="moodSelect" onchange="showSongs()">
+      <option value="" disabled selected>✨ Select Your Current Mood...</option>
+      <option value="anxiety">😰 Feeling Anxious / Overthinking</option>
+      <option value="sad">😔 Feeling Sad / Emotional</option>
+      <option value="sleep">😴 Need to Relax / Sleep</option>
+      <option value="motivation">💪 Need Motivation</option>
+      <option value="happy">😊 Feeling Happy</option>
+      <option value="calm">🌧️ Craving Calm / Peace</option>
+    </select>
+
+    <div id="songList"></div>
+  </div>
+
+  <!-- Resources Grid -->
   <div class="grid">
 
-    <!-- Meditation -->
-
+    <!-- Guided Meditation -->
     <div class="card">
-
-      <h3>
-        🧘 Guided Meditation
-      </h3>
-
-      <p>
-        Relax your mind with calming
-        meditation and breathing exercises.
-      </p>
-
-      <iframe
-        height="200"
-        src="https://www.youtube.com/embed/inpok4MKVLM"
-        title="Meditation"
-        allowfullscreen>
-      </iframe>
-
+      <h3>🧘 Guided Meditation</h3>
+      <p>Take a few minutes to reset. Relax your mind with calming meditation and guided breathing exercises.</p>
+      <iframe height="200" src="https://www.youtube.com/embed/inpok4MKVLM" title="Meditation" allowfullscreen></iframe>
     </div>
 
     <!-- Stress Tips -->
-
     <div class="card">
-
-      <h3>
-        😌 Stress Management Tips
-      </h3>
-
+      <h3>😌 Stress Management</h3>
       <ul class="checklist">
-
-        <li>✅ Take short breaks</li>
-
-        <li>✅ Sleep 7-8 hours</li>
-
-        <li>✅ Drink enough water</li>
-
-        <li>✅ Exercise regularly</li>
-
-        <li>✅ Talk with friends</li>
-
+        <li>✅ Take regular short breaks</li>
+        <li>✅ Aim for 7-8 hours of sleep</li>
+        <li>✅ Stay hydrated throughout the day</li>
+        <li>✅ Engage in light physical activity</li>
+        <li>✅ Talk with friends or family</li>
       </ul>
-
     </div>
 
     <!-- Motivational Quote -->
-
     <div class="card">
-
-      <h3>
-        🌈 Daily Motivation
-      </h3>
-
+      <h3>🌈 Daily Motivation</h3>
       <div class="quote">
-
-        “Your mental health is
-        more important than
-        any temporary situation.”
-
+        “Your mental health is a priority. Your happiness is essential. Your self-care is a necessity. Don't let temporary situations steal your peace.”
       </div>
-
     </div>
 
     <!-- Relaxing Music -->
-
     <div class="card">
-
-      <h3>
-        🎵 Relaxing Music
-      </h3>
-
-      <p>
-        Calm your mind with peaceful music.
-      </p>
-
-      <audio controls style="width:100%;">
-
-        <source
-          src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-          type="audio/mpeg"
-        >
-
+      <h3>🎵 Ambient Sounds</h3>
+      <p>Calm your mind, focus better, or drift off to sleep with this continuous peaceful ambient track.</p>
+      <audio controls>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
       </audio>
-
     </div>
 
-    <!-- Mental Health Articles -->
-
+    <!-- Articles -->
     <div class="card">
-
-      <h3>
-        📖 Mental Health Articles
-      </h3>
-
-      <p>
-        Learn more about emotional wellness.
-      </p>
-
+      <h3>📖 Quick Reads</h3>
+      <p>Educate yourself and learn actionable techniques for maintaining emotional wellness.</p>
       <ul class="checklist">
-
-        <li>📌 Understanding Anxiety</li>
-
-        <li>📌 How to Handle Stress</li>
-
-        <li>📌 Importance of Sleep</li>
-
-        <li>📌 Self Care Techniques</li>
-
+        <li>📌 Understanding Anxiety Triggers</li>
+        <li>📌 Holistic Ways to Handle Stress</li>
+        <li>📌 The Science of Sleep & Mood</li>
+        <li>📌 Daily Self-Care Routines</li>
       </ul>
-
-    </div>
-
-    <!-- Emergency -->
-
-    <div class="card">
-
-      <h3 style="color:red;">
-        🚨 Emergency Help
-      </h3>
-
-      <p>
-        If you are struggling emotionally,
-        contact support immediately.
-      </p>
-
-      <button onclick="callHelp()">
-
-        Call Helpline
-
-      </button>
-
     </div>
 
     <!-- Self Care -->
-
     <div class="card">
-
-      <h3>
-        💙 Self Care Checklist
-      </h3>
-
+      <h3>💙 Daily Check-in</h3>
       <ul class="checklist">
-
-        <li>
-          <input type="checkbox">
-          Drank enough water
-        </li>
-
-        <li>
-          <input type="checkbox">
-          Went for a walk
-        </li>
-
-        <li>
-          <input type="checkbox">
-          Slept properly
-        </li>
-
-        <li>
-          <input type="checkbox">
-          Talked with someone
-        </li>
-
+        <li><label><input type="checkbox"> Drank enough water today</label></li>
+        <li><label><input type="checkbox"> Stepped outside for fresh air</label></li>
+        <li><label><input type="checkbox"> Got adequate rest last night</label></li>
+        <li><label><input type="checkbox"> Connected with a loved one</label></li>
       </ul>
-
     </div>
 
     <!-- Fun Activity -->
-
     <div class="card">
-
-      <h3>
-        🎨 Fun Activities
-      </h3>
-
-      <p>
-        Activities that help reduce stress.
-      </p>
-
+      <h3>🎨 Unwind & Play</h3>
+      <p>Engaging in hobbies naturally lowers cortisol levels. Try one today:</p>
       <ul class="checklist">
-
-        <li>🎵 Listen Music</li>
-
-        <li>📖 Read Books</li>
-
-        <li>🎨 Drawing</li>
-
-        <li>🚶 Walking</li>
-
-        <li>🧘 Yoga</li>
-
+        <li>🎧 Discover a new podcast</li>
+        <li>📖 Read a chapter of a book</li>
+        <li>🖍️ Try mindful coloring or sketching</li>
+        <li>🚶 Take a tech-free walk</li>
+        <li>🧘 Practice 10 minutes of Yoga</li>
       </ul>
+    </div>
 
+    <!-- Emergency -->
+    <div class="card" style="border-color: #ff7675; background: #fff5f5;">
+      <h3 style="color: var(--accent-red);">🚨 Emergency Support</h3>
+      <p style="color: #d63031;">If you are struggling emotionally and need immediate assistance, please reach out to a professional right away. You are not alone.</p>
+      <button class="btn-emergency" onclick="callHelp()">Call Helpline Immediately</button>
     </div>
 
   </div>
-
 </div>
-<!-- Mood Based Music Therapy -->
-
-<div class="card">
-
-  <h3>
-    🎵 Mood Based Music Therapy
-  </h3>
-
-  <p>
-    Select your emotion and get
-    recommended stress relief songs 💙
-  </p>
-
-  <select
-    id="moodSelect"
-    onchange="showSongs()"
-    style="
-      width:100%;
-      padding:12px;
-      margin-top:15px;
-      border-radius:10px;
-      border:1px solid #ccc;
-      font-size:16px;
-    ">
-
-    <option value="">
-      Select Your Mood
-    </option>
-
-    <option value="anxiety">
-      😰 Anxiety / Overthinking
-    </option>
-
-    <option value="sad">
-      😔 Sad / Emotional
-    </option>
-
-    <option value="sleep">
-      😴 Relax / Sleep
-    </option>
-
-    <option value="motivation">
-      💪 Motivation
-    </option>
-
-    <option value="happy">
-      😊 Happy Mood
-    </option>
-
-    <option value="calm">
-      🌧️ Calm / Peaceful
-    </option>
-
-  </select>
-
-  <div
-    id="songList"
-    style="
-      margin-top:20px;
-      line-height:2;
-    ">
-  </div>
-
-</div>
-
-<script>
-
-function showSongs(){
-
-  const mood =
-    document.getElementById(
-      "moodSelect"
-    ).value;
-
-  const songList =
-    document.getElementById(
-      "songList"
-    );
-
-  let songs = "";
-
-  if(mood === "anxiety"){
-
-    songs = `
-      <h4>😰 Anxiety Relief Songs</h4>
-
-      🎵 Weightless — Marconi Union<br>
-      🎵 Iktara — Wake Up Sid<br>
-      🎵 Fix You — Coldplay<br>
-      🎵 Shayad — Love Aaj Kal
-    `;
-  }
-
-  else if(mood === "sad"){
-
-    songs = `
-      <h4>😔 Emotional Healing Songs</h4>
-
-      🎵 Channa Mereya<br>
-      🎵 Let It Be — Beatles<br>
-      🎵 Kabira<br>
-      🎵 Photograph — Ed Sheeran
-    `;
-  }
-
-  else if(mood === "sleep"){
-
-    songs = `
-      <h4>😴 Relax & Sleep Songs</h4>
-
-      🎵 Ocean Eyes<br>
-      🎵 Hawayein<br>
-      🎵 Tum Se Hi<br>
-      🎵 Lovely — Billie Eilish
-    `;
-  }
-
-  else if(mood === "motivation"){
-
-    songs = `
-      <h4>💪 Motivation Songs</h4>
-
-      🎵 Believer<br>
-      🎵 Lakshya Title Track<br>
-      🎵 Hall of Fame<br>
-      🎵 Kar Har Maidaan Fateh
-    `;
-  }
-
-  else if(mood === "happy"){
-
-    songs = `
-      <h4>😊 Happy Mood Songs</h4>
-
-      🎵 Ilahi<br>
-      🎵 Happy — Pharrell Williams<br>
-      🎵 Love You Zindagi<br>
-      🎵 Count On Me
-    `;
-  }
-
-  else if(mood === "calm"){
-
-    songs = `
-      <h4>🌧️ Calm & Peaceful Songs</h4>
-
-      🎵 Baarishein<br>
-      🎵 Yellow — Coldplay<br>
-      🎵 Heeriye<br>
-      🎵 Until I Found You
-    `;
-  }
-
-  songList.innerHTML = songs;
-}
-
-</script>
 
 <footer>
-
-  💙 Take care of your mind.
-  Healing takes time.
-
+  💙 Take care of your mind. Healing is a journey, not a destination. <br>
+  &copy; 2026 MindWell Platform
 </footer>
 
 <script>
+  function showSongs() {
+    const mood = document.getElementById("moodSelect").value;
+    const songList = document.getElementById("songList");
+    
+    // Make the div visible once a choice is made
+    songList.style.display = "block";
+    
+    let songs = "";
 
-  function callHelp(){
+    if (mood === "anxiety") {
+      songs = `
+        <h4>😰 Anxiety Relief Playlist</h4>
+        <div class="song-item">🎵 Weightless — Marconi Union</div>
+        <div class="song-item">🎵 Iktara — Wake Up Sid</div>
+        <div class="song-item">🎵 Fix You — Coldplay</div>
+        <div class="song-item">🎵 Shayad — Love Aaj Kal</div>
+      `;
+    } 
+    else if (mood === "sad") {
+      songs = `
+        <h4>😔 Emotional Healing Playlist</h4>
+        <div class="song-item">🎵 Channa Mereya — Arijit Singh</div>
+        <div class="song-item">🎵 Let It Be — The Beatles</div>
+        <div class="song-item">🎵 Kabira — Yeh Jawaani Hai Deewani</div>
+        <div class="song-item">🎵 Photograph — Ed Sheeran</div>
+      `;
+    } 
+    else if (mood === "sleep") {
+      songs = `
+        <h4>😴 Relax & Deep Sleep</h4>
+        <div class="song-item">🎵 Ocean Eyes — Billie Eilish</div>
+        <div class="song-item">🎵 Hawayein — Jab Harry Met Sejal</div>
+        <div class="song-item">🎵 Tum Se Hi — Jab We Met</div>
+        <div class="song-item">🎵 Clair de Lune — Claude Debussy</div>
+      `;
+    } 
+    else if (mood === "motivation") {
+      songs = `
+        <h4>💪 Power Motivation Playlist</h4>
+        <div class="song-item">🎵 Believer — Imagine Dragons</div>
+        <div class="song-item">🎵 Lakshya Title Track</div>
+        <div class="song-item">🎵 Hall of Fame — The Script</div>
+        <div class="song-item">🎵 Kar Har Maidaan Fateh — Sanju</div>
+      `;
+    } 
+    else if (mood === "happy") {
+      songs = `
+        <h4>😊 Feel Good Hits</h4>
+        <div class="song-item">🎵 Ilahi — Yeh Jawaani Hai Deewani</div>
+        <div class="song-item">🎵 Happy — Pharrell Williams</div>
+        <div class="song-item">🎵 Love You Zindagi — Dear Zindagi</div>
+        <div class="song-item">🎵 Count On Me — Bruno Mars</div>
+      `;
+    } 
+    else if (mood === "calm") {
+      songs = `
+        <h4>🌧️ Calm & Peaceful Vibes</h4>
+        <div class="song-item">🎵 Baarishein — Anuv Jain</div>
+        <div class="song-item">🎵 Yellow — Coldplay</div>
+        <div class="song-item">🎵 Heeriye — Arijit Singh</div>
+        <div class="song-item">🎵 Until I Found You — Stephen Sanchez</div>
+      `;
+    }
 
-    alert(
-      "Mental Health Helpline: 1800-599-0019"
-    );
+    // Add a slight fade-in effect when changing songs
+    songList.style.opacity = 0;
+    setTimeout(() => {
+      songList.innerHTML = songs;
+      songList.style.transition = "opacity 0.4s ease";
+      songList.style.opacity = 1;
+    }, 100);
   }
 
+  function callHelp() {
+    alert("Emergency Mental Health Helpline: 1800-599-0019 (Available 24/7)");
+  }
 </script>
 
 </body>
