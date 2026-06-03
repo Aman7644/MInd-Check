@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>Find Therapist</title>
+
+  <style>
+
+    :root{
+
+      --bg-color:#f8f7f2;
+      --card-bg:#fffefb;
+      --text-main:#2d3436;
+      --accent-green:#96b3a2;
+      --border-color:#e0e0e0;
+      --shadow:0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    *{
+
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Segoe UI',Tahoma,sans-serif;
+    }
+
+    body{
+
+      background:var(--bg-color);
+      color:var(--text-main);
+    }
+
+    header{
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 40px;
+      background:var(--card-bg);
+      border-bottom:1px solid var(--border-color);
+      box-shadow:var(--shadow);
+    }
+
+    .logo{
+
+      font-size:24px;
+      font-weight:bold;
+      color:var(--accent-green);
+    }
+
+    nav a{
+
+      margin:0 12px;
+      text-decoration:none;
+      color:var(--text-main);
+      font-weight:500;
+    }
+
+    nav a.active{
+
+      background:var(--accent-green);
+      color:white;
+      padding:8px 15px;
+      border-radius:8px;
+    }
+
+    .container{
+
+      max-width:1200px;
+      margin:40px auto;
+      padding:20px;
+    }
+
+    .hero{
+
+      text-align:center;
+      margin-bottom:40px;
+    }
+
+    .hero img{
+
+      width:120px;
+      margin-bottom:20px;
+    }
+
+    .hero h1{
+
+      font-size:40px;
+      margin-bottom:10px;
+    }
+
+    .hero p{
+
+      color:#666;
+      font-size:18px;
+    }
+
+    .grid{
+
+      display:grid;
+      grid-template-columns:
+      repeat(auto-fit,minmax(300px,1fr));
+
+      gap:25px;
+    }
+
+    .card{
+
+      background:var(--card-bg);
+      border-radius:20px;
+      padding:25px;
+      box-shadow:var(--shadow);
+      border:1px solid var(--border-color);
+      text-align:center;
+    }
+
+    .card img{
+
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      object-fit:cover;
+      margin-bottom:15px;
+    }
+
+    .card h3{
+
+      margin-bottom:10px;
+      color:var(--accent-green);
+    }
+
+    .card p{
+
+      margin-bottom:10px;
+      color:#555;
+    }
+
+    button{
+
+      background:var(--accent-green);
+      color:white;
+      border:none;
+      padding:12px 18px;
+      border-radius:10px;
+      cursor:pointer;
+      margin-top:15px;
+    }
+
+    button:hover{
+
+      opacity:0.9;
+    }
+
+    footer{
+
+      text-align:center;
+      padding:30px;
+      opacity:0.7;
+      margin-top:40px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    🌿 MindWell
+  </div>
+
+  <nav>
+
+    <a href="dashboard.html">
+      Dashboard
+    </a>
+
+    <a href="journal.html">
+      Journal
+    </a>
+
+    <a href="resources.html">
+      Resources
+    </a>
+
+    <a href="therapist.html"
+      class="active">
+
+      Find Therapist
+
+    </a>
+
+    <a href="profile.html">
+      Profile
+    </a>
+
+  </nav>
+
+</header>
+
+<div class="container">
+
+  <div class="hero">
+
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/3771/3771417.png"
+    >
+
+    <h1>
+      Find Your Therapist 💙
+    </h1>
+
+    <p>
+      Connect with experienced mental
+      health professionals.
+    </p>
+
+  </div>
+
+  <div class="grid">
+
+    <!-- Therapist 1 -->
+
+    <div class="card">
+
+      <img
+        src="https://randomuser.me/api/portraits/women/44.jpg"
+      >
+
+      <h3>
+        Dr. Sarah Johnson
+      </h3>
+
+      <p>
+        Anxiety & Stress Specialist
+      </p>
+
+      <p>
+        ⭐ 4.9 Rating
+      </p>
+
+      <button onclick="bookSession()">
+
+        Book Session
+
+      </button>
+
+    </div>
+
+    <!-- Therapist 2 -->
+
+    <div class="card">
+
+      <img
+        src="https://randomuser.me/api/portraits/men/32.jpg"
+      >
+
+      <h3>
+        Dr. Michael Lee
+      </h3>
+
+      <p>
+        Depression Counsellor
+      </p>
+
+      <p>
+        ⭐ 4.8 Rating
+      </p>
+
+      <button onclick="bookSession()">
+
+        Book Session
+
+      </button>
+
+    </div>
+
+    <!-- Therapist 3 -->
+
+    <div class="card">
+
+      <img
+        src="https://randomuser.me/api/portraits/women/68.jpg"
+      >
+
+      <h3>
+        Dr. Emma Wilson
+      </h3>
+
+      <p>
+        Relationship Therapist
+      </p>
+
+      <p>
+        ⭐ 5.0 Rating
+      </p>
+
+      <button onclick="bookSession()">
+
+        Book Session
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+
+  💙 Professional support can help
+  you heal and grow.
+
+</footer>
+
+<script>
+
+  function bookSession(){
+
+    alert(
+      "Session Booking Feature Coming Soon 💙"
+    );
+  }
+
+</script>
+
+</body>
+</html>
