@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MindWell - Resources</title>
+  <style>
+    :root{ --bg-color:#f8f7f2; --card-bg:#fffefb; --text-main:#2d3436; --accent-green:#96b3a2; --accent-red:#b33939; --border-color:#e0e0e0; --shadow:0 4px 12px rgba(0,0,0,0.05); }
+    body.dark-mode{ --bg-color:#1a252f; --card-bg:#2c3e50; --text-main:#ecf0f1; --accent-green:#4a6d5a; --border-color:#34495e; --shadow:0 4px 12px rgba(0,0,0,0.3); }
+    *{ margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Tahoma,sans-serif; transition:0.3s ease; }
+    body{ background-color:var(--bg-color); color:var(--text-main); }
+    header{ display:flex; justify-content:space-between; align-items:center; padding:15px 40px; background:var(--card-bg); border-bottom:1px solid var(--border-color); position:sticky; top:0; z-index:1000; }
+    .logo{ font-size:24px; font-weight:bold; color:var(--accent-green); display:flex; align-items:center; gap:8px; text-decoration:none; }
+    nav a{ margin:0 12px; text-decoration:none; color:var(--text-main); font-weight:500; }
+    nav a.active{ background:var(--accent-green); color:white; padding:8px 15px; border-radius:8px; }
+    .controls{ display:flex; align-items:center; gap:15px; }
+    #theme-toggle{ cursor:pointer; background:#ddd; border:none; border-radius:20px; padding:8px 12px; display:flex; align-items:center; gap:5px; font-size:14px; }
+    body.dark-mode #theme-toggle{ background:#444; color:white; }
+    .container{ padding:40px; max-width:1200px; margin:auto; }
+    .card{ background:var(--card-bg); border-radius:15px; padding:25px; box-shadow:var(--shadow); border:1px solid var(--border-color); display:flex; flex-direction:column; justify-content:space-between;}
+    .resource-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:25px; margin-top:25px; }
+    .badge { font-size:12px; background:var(--bg-color); border: 1px solid var(--border-color); padding:4px 10px; border-radius:12px; margin-left:10px; }
+    .btn{ display:inline-block; margin-top:15px; color:white; background:var(--accent-green); padding:10px 15px; border-radius:8px; text-decoration:none; text-align:center; font-weight:bold; }
+    .btn:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">🌿 MindWell</a>
+  <nav>
+    <a href="index.html">Dashboard</a>
+    <a href="journal.html">Journal</a>
+    <a href="resources.html" class="active">Resources</a>
+    <a href="index.html#therapistSection">Find Therapist</a>
+    <a href="profile.html">Profile</a>
+  </nav>
+  <div class="controls">
+    <button id="theme-toggle" onclick="toggleTheme()"><span id="toggle-icon">☀️</span><span id="toggle-text">Day Mode</span></button>
+  </div>
+</header>
+
+<div class="container">
+  <h1>📚 Curated Mental Health Resources</h1>
+  <p style="color: gray; margin-top: 5px;">Read, watch, and learn to improve your emotional well-being.</p>
+  
+  <div class="resource-grid">
+    <div class="card">
+      <div>
+        <h3 style="color:var(--accent-green);">Understanding Anxiety <span class="badge">Article</span></h3>
+        <p style="margin-top:15px; line-height:1.6;">Learn about the common triggers of anxiety and discover practical, daily management techniques to ground yourself.</p>
+      </div>
+      <a href="#" class="btn">Read Article →</a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3 style="color:var(--accent-green);">10-Min Guided Meditation <span class="badge">Video</span></h3>
+        <p style="margin-top:15px; line-height:1.6;">A soothing audio-visual guide designed to calm your racing thoughts, lower stress, and improve focus.</p>
+      </div>
+      <a href="#" class="btn">Watch Video →</a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3 style="color:var(--accent-green);">Sleep Hygiene Checklist <span class="badge">Guide</span></h3>
+        <p style="margin-top:15px; line-height:1.6;">Actionable tips and nighttime routines to ensure you get 8 hours of deep, uninterrupted sleep every night.</p>
+      </div>
+      <a href="#" class="btn">View Checklist →</a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3 style="color:var(--accent-green);">Cognitive Behavioral Therapy <span class="badge">Article</span></h3>
+        <p style="margin-top:15px; line-height:1.6;">An introduction to CBT and how it can help re-wire negative thought patterns into positive ones.</p>
+      </div>
+      <a href="#" class="btn">Read Basics →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleTheme(){
+    document.body.classList.toggle("dark-mode");
+    const icon = document.getElementById("toggle-icon");
+    const text = document.getElementById("toggle-text");
+    if(document.body.classList.contains("dark-mode")){
+      icon.innerText = "🌙"; text.innerText = "Dark Mode";
+    } else {
+      icon.innerText = "☀️"; text.innerText = "Day Mode";
+    }
+  }
+</script>
+</body>
+</html>
