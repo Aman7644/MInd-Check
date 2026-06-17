@@ -1,0 +1,35 @@
+// controllers/analyticsController.js
+const Mood = require('../models/Mood');
+
+exports.getMoodTrends = async (req, res) => {
+  try {
+    const userId = req.user.id; // From auth middleware
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+    // Fetch moods from the last 7 days
+    const moods = await Mood.find({
+      userId,
+      createdAt: { $gte: sevenDaysAgo }
+    }).sort({ createdAt: 1 });
+
+    // Format data for Chart.js (Labels and Data points)
+    const chartData = moods.map(entry => ({
+      date: entry.createdAt.toLocaleDateString('en-US', { weekday: 'short' }),
+      score: entry.score
+    }));
+
+    // Logic: Calculate Average Mood Score
+    const totalScore = moods.reduce((acc, curr) => acc + curr.score, 0);
+    const averageMood = moods.length > 0 ? (totalScore / moods.length).toFixed(1) : 0;
+
+    res.status(200).json({
+      success: true,
+      averageMood,
+      data: chartData,
+      totalEntries: moods.length
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error processing analytics", error });
+  }
+};
